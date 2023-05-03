@@ -5,7 +5,7 @@ class Game extends AdventureScene {
 
     onEnter() {
         let hole = this.add.text(this.w * 0.5, this.w * 0.25, "🕳 Hole")
-            .setFontSize(this.s * 2)
+            .setFontSize(this.s * 2.5)
             .setInteractive()
             .on('pointerover', () => {
                 this.showMessage("It's a dark hole on the ground.")
@@ -18,7 +18,7 @@ class Game extends AdventureScene {
             
 
         let door = this.add.text(this.w * 0.1, this.w * 0.25, "🚪 Door")
-            .setFontSize(this.s * 2)
+            .setFontSize(this.s * 2.5)
             .setInteractive()
             .on('pointerover', () => {
                     this.showMessage("It a door maybe this lead somewhere.")
@@ -38,7 +38,7 @@ class Room1 extends AdventureScene {
     }
     onEnter() {
         let back = this.add.text(this.w * 0.3, this.w * 0.45, "Go Back")
-            .setFontSize(this.s * 2)
+            .setFontSize(this.s * 3)
             .setInteractive()
             .on('pointerover', () => this.showMessage("You sure you want to go back."))
             .on('pointerdown', () => {
@@ -54,7 +54,7 @@ class Room1 extends AdventureScene {
             });
 
         let door3 = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 Door")
-            .setFontSize(this.s * 2)
+            .setFontSize(this.s * 2.5)
             .setInteractive()
             .on('pointerover', () => {
                     this.showMessage("Another door I wonder where this lead us.")
@@ -66,7 +66,7 @@ class Room1 extends AdventureScene {
             )
 
         let door2 = this.add.text(this.w * 0.5, this.w * 0.15, "🚪 Door")
-            .setFontSize(this.s * 2)
+            .setFontSize(this.s * 2.5)
             .setInteractive()
             .on('pointerover', () => {
                     this.showMessage("Another door which is indentiacal to the previous and this door.")
@@ -77,7 +77,7 @@ class Room1 extends AdventureScene {
                 }
             )
             let key = this.add.text(this.w * 0.2, this.w * 0.3, "🔑 Small Key")
-            .setFontSize(this.s * 2)
+            .setFontSize(this.s * 2.5)
             .setInteractive()
             .on('pointerover', () => {
                 this.showMessage("It's a small key.")
@@ -95,7 +95,7 @@ class Room1 extends AdventureScene {
             })
 
             let rock = this.add.text(this.w * 0.4, this.w * 0.3, "🪨 Rock")
-            .setFontSize(this.s * 2)
+            .setFontSize(this.s * 2.5)
             .setInteractive()
             .on('pointerover', () => {
                 this.showMessage("It's a rock... wait a minute tell me you going pick it up")
@@ -121,7 +121,7 @@ class Room2 extends AdventureScene {
     }
     onEnter() {
         let back = this.add.text(this.w * 0.3, this.w * 0.45, "Go Back")
-        .setFontSize(this.s * 2)
+        .setFontSize(this.s * 3)
         .setInteractive()
         .on('pointerover', () => this.showMessage("I'm just saying you can't."))
         .on('pointerdown', () => {
@@ -137,7 +137,7 @@ class Room2 extends AdventureScene {
         });
 
     let door3 = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 Door")
-        .setFontSize(this.s * 2)
+        .setFontSize(this.s * 2.5)
         .setInteractive()
         .on('pointerover', () => {
                 this.showMessage("I swear to god this door look the same.")
@@ -149,7 +149,7 @@ class Room2 extends AdventureScene {
         )
 
     let door2 = this.add.text(this.w * 0.5, this.w * 0.15, "🚪 Door")
-        .setFontSize(this.s * 2)
+        .setFontSize(this.s * 2.5)
         .setInteractive()
         .on('pointerover', () => {
                 this.showMessage("Can't the game creator make a new sprite image for these door... JEEZ.")
@@ -159,15 +159,103 @@ class Room2 extends AdventureScene {
                 this.gotoScene('room4');
             }
         )
-    let painting = this.add.text(this.w * 0.3, this.w * 0.3, "🖼 Painting")
-        .setFontSize(this.s * 2)
+    let painting = this.add.text(this.w * 0.3, this.w * 0.3, "🖼 Painting (Underdevlopment)")
+        .setFontSize(this.s * 2.5)
         .setInteractive()
         .on('pointerover', () => {
-            this.showMessage("Look like a large painting. (under devlopment")
+            this.showMessage("Look like a large painting.")
         })
     }
 }
 
+class Room3 extends AdventureScene {
+    constructor() {
+        super("room3", "Room 3");
+    }
+    onEnter() {
+        let back = this.add.text(this.w * 0.3, this.w * 0.45, "Go Back")
+        .setFontSize(this.s * 3)
+        .setInteractive()
+        .on('pointerover', () => this.showMessage("Look buddy you can't go back."))
+        .on('pointerdown', () => {
+            this.showMessage("You turn around and the door wasn't there");
+            this.tweens.add({
+                targets: back,
+                x: '+=' + this.s,
+                repeat: 2,
+                yoyo: true,
+                ease: 'Sine.inOut',
+                duration: 100
+            });
+        });
+
+    let door3 = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 Door")
+        .setFontSize(this.s * 2.5)
+        .setInteractive()
+        .on('pointerover', () => {
+                this.showMessage("door Door DOOR ALL THE SAME DOOR.")
+        })
+        .on('pointerdown', () => {
+                this.showMessage("*You enter the door*");
+                this.gotoScene('room4');
+            }
+        )
+
+    let door2 = this.add.text(this.w * 0.5, this.w * 0.15, "🚪 Door")
+        .setFontSize(this.s * 2.5)
+        .setInteractive()
+        .on('pointerover', () => {
+                this.showMessage("BLOODY HEll you though the creator just give us a different type of door.")
+        })
+        .on('pointerdown', () => {
+                this.showMessage("*You enter the door*");
+                this.gotoScene('room1');
+            }
+        )
+    
+    let laptop = this.add.text(this.w * 0.3, this.w * 0.3, "💻 Laptop")
+        .setFontSize(this.s * 2.5)
+        .setInteractive()
+        .on('pointerover', () => {
+            if (this.hasItem("Small Key")) {
+                this.showMessage("You've the literally KEY for this Laptop.");
+            } else {
+                this.showMessage("It's locked. You need a KEY, LMAO get it");
+                this.tweens.add({
+                    targets: laptop,
+                    x: '+=' + this.s,
+                    repeat: 2,
+                    yoyo: true,
+                    ease: 'Sine.inOut',
+                    duration: 100
+                });
+            }
+        })
+        .on('pointerdown', () => {
+            if (this.hasItem("Small Key")) {
+                this.loseItem("Small Key");
+                this.showMessage("*Jack in*");
+                laptop.setText("💻 Laptop");
+                this.gotoScene('laptop');
+            }
+        })
+    }
+}
+class Laptop extends AdventureScene {
+    constructor() {
+        super("laptop", "Laptop");
+    }
+    onEnter() {
+        let back = this.add.text(this.w * 0.3, this.w * 0.45, "Jack Out")
+        .setFontSize(this.s * 3)
+        .setInteractive()
+        .on('pointerover', () => this.showMessage("You want to leave the laptop space."))
+        .on('pointerdown', () => {
+            this.showMessage("You Jack Out");
+            this.gotoScene('room3');
+        });
+    }
+}
 class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
@@ -213,7 +301,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Room2],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2,
+    scene: [Room1, Room3, Laptop],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
     title: "Adventure Game",
 });
 
