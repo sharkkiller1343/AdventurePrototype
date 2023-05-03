@@ -97,8 +97,14 @@ class Intro extends Phaser.Scene {
         super('intro')
     }
     create() {
-        this.add.text(50,50, "Adventure awaits!").setFontSize(50);
-        this.add.text(50,100, "Click anywhere to begin.").setFontSize(20);
+        this.add.text(50,50, "THE DOOR OF WONDER!").setFontSize(100);
+        this.text1 = this.add.text(50,200, "Click anywhere to begin.").setFontSize(50);
+        this.tweens.add({
+            targets: this.text1,
+                alpha: {from:0, to:1},
+                duration: 1950,
+                repeat: -1,
+        })        
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
             this.time.delayedCall(1000, () => this.scene.start('demo1'));
@@ -125,7 +131,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Demo1, Demo2, Outro],
+    scene: [Intro, Demo1, Demo2, Outro],//Title, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2,
     title: "Adventure Game",
 });
 
