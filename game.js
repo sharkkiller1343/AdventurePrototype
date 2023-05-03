@@ -4,23 +4,12 @@ class Game extends AdventureScene {
     }
 
     onEnter() {
-        let hole = this.add.text(this.w * 0.5, this.w * 0.25, "🕳 hole")
+        let hole = this.add.text(this.w * 0.5, this.w * 0.25, "🕳 Hole")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
-                this.showMessage("It's a dark hole.")
+                this.showMessage("It's a dark hole on the ground.")
             })
-            //.on('pointerdown', () => {
-            //    this.showMessage("You pick up the key.");
-            //    this.gainItem('key');
-            //    this.tweens.add({
-            //        targets: key,
-            //        y: `-=${2 * this.s}`,
-            //        alpha: { from: 1, to: 0 },
-            //        duration: 500,
-            //        onComplete: () => key.destroy()
-            //    });
-            //})
             .on('pointerdown', () => {
                     this.showMessage("*you jump down the hole*");
                     this.gotoScene('bad1');
@@ -45,10 +34,10 @@ class Game extends AdventureScene {
 
 class Room1 extends AdventureScene {
     constructor() {
-        super("room1", "Room 1.");
+        super("room1", "Room 1");
     }
     onEnter() {
-        let back = this.add.text(this.w * 0.3, this.w * 0.4, "Go Back")
+        let back = this.add.text(this.w * 0.3, this.w * 0.45, "Go Back")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => this.showMessage("You sure you want to go back."))
@@ -64,19 +53,65 @@ class Room1 extends AdventureScene {
                 });
             });
 
-        let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
+        let door3 = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 Door")
+            .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
-                this.showMessage('*giggles*');
+                    this.showMessage("Another door I wonder where this lead us.")
+            })
+            .on('pointerdown', () => {
+                    this.showMessage("*You enter the door*");
+                    this.gotoScene('room3');
+                }
+            )
+
+        let door2 = this.add.text(this.w * 0.5, this.w * 0.15, "🚪 Door")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                    this.showMessage("Another door which is indentiacal to the previous and this door.")
+            })
+            .on('pointerdown', () => {
+                    this.showMessage("*You enter the door*");
+                    this.gotoScene('room2');
+                }
+            )
+            let key = this.add.text(this.w * 0.2, this.w * 0.3, "🔑 Small Key")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("It's a small key.")
+            })
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the small key.");
+                this.gainItem('Small Key');
                 this.tweens.add({
-                    targets: finish,
-                    x: this.s + (this.h - 2 * this.s) * Math.random(),
-                    y: this.s + (this.h - 2 * this.s) * Math.random(),
-                    ease: 'Sine.inOut',
-                    duration: 500
+                    targets: key,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => key.destroy()
                 });
             })
-            .on('pointerdown', () => this.gotoScene('bad1'));
+
+            let rock = this.add.text(this.w * 0.4, this.w * 0.3, "🪨 Rock")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("It's a rock... wait a minute tell me you going pick it up")
+            })
+            .on('pointerdown', () => {
+                this.showMessage("YOU FIRMLY BOLDED PICK A ROCK.");
+                this.gainItem('THE ROCK (LITTERAY)');
+                this.tweens.add({
+                    targets: rock,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => key.destroy()
+                });
+            })
+
     }
 }
 
@@ -125,7 +160,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Game, Room1, Bad1],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2,
+    scene: [Game, Room1],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2,
     title: "Adventure Game",
 });
 
