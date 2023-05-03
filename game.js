@@ -48,14 +48,20 @@ class Room1 extends AdventureScene {
         super("room1", "Room 1.");
     }
     onEnter() {
-        this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
+        let back = this.add.text(this.w * 0.3, this.w * 0.4, "Go Back")
             .setFontSize(this.s * 2)
             .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("You've got no other choice, really.");
-            })
+            .on('pointerover', () => this.showMessage("You sure you want to go back."))
             .on('pointerdown', () => {
-                this.gotoScene('game');
+                this.showMessage("The door is lock... welp");
+                this.tweens.add({
+                    targets: back,
+                    x: '+=' + this.s,
+                    repeat: 2,
+                    yoyo: true,
+                    ease: 'Sine.inOut',
+                    duration: 100
+                });
             });
 
         let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
