@@ -115,6 +115,59 @@ class Room1 extends AdventureScene {
     }
 }
 
+class Room2 extends AdventureScene {
+    constructor() {
+        super("room2", "Room 2");
+    }
+    onEnter() {
+        let back = this.add.text(this.w * 0.3, this.w * 0.45, "Go Back")
+        .setFontSize(this.s * 2)
+        .setInteractive()
+        .on('pointerover', () => this.showMessage("I'm just saying you can't."))
+        .on('pointerdown', () => {
+            this.showMessage("This time the door you enter just dispear *SPOOKY*");
+            this.tweens.add({
+                targets: back,
+                x: '+=' + this.s,
+                repeat: 2,
+                yoyo: true,
+                ease: 'Sine.inOut',
+                duration: 100
+            });
+        });
+
+    let door3 = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 Door")
+        .setFontSize(this.s * 2)
+        .setInteractive()
+        .on('pointerover', () => {
+                this.showMessage("I swear to god this door look the same.")
+        })
+        .on('pointerdown', () => {
+                this.showMessage("*You enter the door*");
+                this.gotoScene('room1');
+            }
+        )
+
+    let door2 = this.add.text(this.w * 0.5, this.w * 0.15, "🚪 Door")
+        .setFontSize(this.s * 2)
+        .setInteractive()
+        .on('pointerover', () => {
+                this.showMessage("Can't the game creator make a new sprite image for these door... JEEZ.")
+        })
+        .on('pointerdown', () => {
+                this.showMessage("*You enter the door*");
+                this.gotoScene('room4');
+            }
+        )
+    let painting = this.add.text(this.w * 0.3, this.w * 0.3, "🖼 Painting")
+        .setFontSize(this.s * 2)
+        .setInteractive()
+        .on('pointerover', () => {
+            this.showMessage("Look like a large painting. (under devlopment")
+        })
+    }
+}
+
 class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
@@ -160,7 +213,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Game, Room1],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2,
+    scene: [Room2],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2,
     title: "Adventure Game",
 });
 
