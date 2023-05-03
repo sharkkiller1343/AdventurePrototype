@@ -254,6 +254,24 @@ class Laptop extends AdventureScene {
             this.showMessage("You Jack Out");
             this.gotoScene('room3');
         });
+
+        let key = this.add.text(this.w * 0.2, this.w * 0.3, "🔑 Key")
+            .setFontSize(this.s * 2.5)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("It's literally a PHISICAL KEY.")
+            })
+            .on('pointerdown', () => {
+                this.showMessage("You pick up a KEY in the DIGITAL SPACE WOW.");
+                this.gainItem('Key');
+                this.tweens.add({
+                    targets: key,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => key.destroy()
+                });
+            })
     }
 }
 class Intro extends Phaser.Scene {
