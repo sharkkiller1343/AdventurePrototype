@@ -102,13 +102,13 @@ class Room1 extends AdventureScene {
             })
             .on('pointerdown', () => {
                 this.showMessage("YOU FIRMLY BOLDED PICK A ROCK.");
-                this.gainItem('THE ROCK (LITTERAY)');
+                this.gainItem('THE ROCK (LITERALLY)');
                 this.tweens.add({
                     targets: rock,
                     y: `-=${2 * this.s}`,
                     alpha: { from: 1, to: 0 },
                     duration: 500,
-                    onComplete: () => key.destroy()
+                    onComplete: () => rock.destroy()
                 });
             })
 
@@ -274,6 +274,106 @@ class Laptop extends AdventureScene {
             })
     }
 }
+class Room4 extends AdventureScene {
+    constructor() {
+        super("room4", "Room 4");
+    }
+    onEnter() {
+        let back = this.add.text(this.w * 0.3, this.w * 0.45, "Go Back")
+        .setFontSize(this.s * 3)
+        .setInteractive()
+        .on('pointerover', () => this.showMessage("I'm just going to shut up and let you guess what happen next."))
+        .on('pointerdown', () => {
+            this.showMessage("Apperantly the game doesn't let you go back, who had though after so many attempt to do so");
+            this.tweens.add({
+                targets: back,
+                x: '+=' + this.s,
+                repeat: 2,
+                yoyo: true,
+                ease: 'Sine.inOut',
+                duration: 100
+            });
+        });
+
+    let door4 = this.add.text(this.w * 0.05, this.w * 0.15, "🚪 Door")
+        .setFontSize(this.s * 2.5)
+        .setInteractive()
+        .on('pointerover', () => {
+                this.showMessage("At this point, it juszt a god damn f#*&%ing door.")
+        })
+        .on('pointerdown', () => {
+                this.showMessage("*You enter the door*");
+                this.gotoScene('room4');
+            }
+        )
+
+    let door3 = this.add.text(this.w * 0.6, this.w * 0.15, "🚪 Door")
+        .setFontSize(this.s * 2.5)
+        .setInteractive()
+        .on('pointerover', () => {
+                this.showMessage("A DOOR what do you expected to be.")
+        })
+        .on('pointerdown', () => {
+                this.showMessage("*You enter the door*");
+                this.gotoScene('room3');
+            }
+        )
+
+    let baddoor = this.add.text(this.w * 0.25, this.w * 0.15, "🚪 Door")
+        .setFontSize(this.s * 2.5)
+        .setInteractive()
+        .on('pointerover', () => {
+            if (this.hasItem("Key")) {
+                this.showMessage("You've the KEY. Want to open this Door?");
+            } else {
+                this.showMessage("FINALY A DOOR WITH A LOCK, NOW THAT PROGRESS!!!");
+                this.tweens.add({
+                    targets: baddoor,
+                    x: '+=' + this.s,
+                    repeat: 2,
+                    yoyo: true,
+                    ease: 'Sine.inOut',
+                    duration: 100
+                });
+            }
+        })
+        .on('pointerdown', () => {
+            if (this.hasItem("Key")) {
+                this.loseItem("Key");
+                this.showMessage("*You open the door*");
+                laptop.setText("🚪 Door");
+                this.gotoScene('bad');
+            }
+        })
+
+        let gooddoor = this.add.text(this.w * 0.4, this.w * 0.15, "🚪 Door")
+        .setFontSize(this.s * 2.5)
+        .setInteractive()
+        .on('pointerover', () => {
+            if (this.hasItem("Key")) {
+                this.showMessage("You've the KEY. Want to open this Door?");
+            } else {
+                this.showMessage("Ohhh this door is lock you might need a key, FINALY SOMETHING DIFFERENT");
+                this.tweens.add({
+                    targets: gooddoor,
+                    x: '+=' + this.s,
+                    repeat: 2,
+                    yoyo: true,
+                    ease: 'Sine.inOut',
+                    duration: 100
+                });
+            }
+        })
+        .on('pointerdown', () => {
+            if (this.hasItem("Key")) {
+                this.loseItem("Key");
+                this.showMessage("*You open the door*");
+                laptop.setText("🚪 Door");
+                this.gotoScene('Good');
+            }
+        })
+    }
+}
 class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
@@ -319,7 +419,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Room1, Room3, Laptop],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
+    scene: [Room4],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
     title: "Adventure Game",
 });
 
