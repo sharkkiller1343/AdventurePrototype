@@ -255,7 +255,7 @@ class Laptop extends AdventureScene {
             this.gotoScene('room3');
         });
 
-        let key = this.add.text(this.w * 0.2, this.w * 0.3, "🔑 Key")
+        let key = this.add.text(this.w * 0.2, this.w * 0.3, "🗝 Key")
             .setFontSize(this.s * 2.5)
             .setInteractive()
             .on('pointerover', () => {
@@ -295,7 +295,7 @@ class Room4 extends AdventureScene {
             });
         });
 
-    let door4 = this.add.text(this.w * 0.05, this.w * 0.15, "🚪 Door")
+    let door2 = this.add.text(this.w * 0.05, this.w * 0.15, "🚪 Door")
         .setFontSize(this.s * 2.5)
         .setInteractive()
         .on('pointerover', () => {
@@ -303,7 +303,7 @@ class Room4 extends AdventureScene {
         })
         .on('pointerdown', () => {
                 this.showMessage("*You enter the door*");
-                this.gotoScene('room4');
+                this.gotoScene('room2');
             }
         )
 
@@ -341,8 +341,8 @@ class Room4 extends AdventureScene {
             if (this.hasItem("Key")) {
                 this.loseItem("Key");
                 this.showMessage("*You open the door*");
-                laptop.setText("🚪 Door");
-                this.gotoScene('bad');
+                baddoor.setText("🚪 Door");
+                this.gotoScene('bad2');
             }
         })
 
@@ -368,8 +368,8 @@ class Room4 extends AdventureScene {
             if (this.hasItem("Key")) {
                 this.loseItem("Key");
                 this.showMessage("*You open the door*");
-                laptop.setText("🚪 Door");
-                this.gotoScene('Good');
+                gooddoor.setText("🚪 Door");
+                this.gotoScene('good');
             }
         })
     }
@@ -399,8 +399,45 @@ class Bad1 extends Phaser.Scene {
         super('bad1');
     }
     create() {
-        this.add.text(50, 50, "You had reach the bad ending where you fall to your death").setFontSize(50);
-        this. text1 = this.add.text(50, 100, "Click anywhere to restart.").setFontSize(50);
+        this.add.text(50, 50, "You had fall to your death LMAO 👈😂📸").setFontSize(50);
+        this.add.text(50, 100, "But for real who would ever go down to a dark hole").setFontSize(50);
+        this. text1 = this.add.text(50, 200, "Click anywhere to restart.").setFontSize(50);
+        this.tweens.add({
+            targets: this.text1,
+                alpha: {from:0, to:1},
+                duration: 1950,
+                repeat: -1,
+        })        
+        this.input.on('pointerdown', () => this.scene.start('intro'));
+    }
+}
+
+class Bad2 extends Phaser.Scene {
+    constructor() {
+        super('bad2');
+    }
+    create() {
+        this.add.text(50, 50, "It was all darkness here and when you turn around the door").setFontSize(50);
+        this.add.text(50, 100, "was gone and you were all alone in the dark 🌚.").setFontSize(50);
+        this. text1 = this.add.text(50, 200, "You reach to a bad ending. Click anywhere to try again.").setFontSize(50);
+        this.tweens.add({
+            targets: this.text1,
+                alpha: {from:0, to:1},
+                duration: 1950,
+                repeat: -1,
+        })        
+        this.input.on('pointerdown', () => this.scene.start('intro'));
+    }
+}
+
+class Good extends Phaser.Scene {
+    constructor() {
+        super('good');
+    }
+    create() {
+        this.add.text(50, 50, "🎊You reach to the end and a cake is there to enjoy 👌🥳🎂🎉").setFontSize(50);
+        this.add.text(50, 100, "Hope you enjoy this simple point and click game 👊😎👍").setFontSize(50);
+        this. text1 = this.add.text(50, 200, "🎊Congrualtion!!! Click anywhere to start over again🎊").setFontSize(50);
         this.tweens.add({
             targets: this.text1,
                 alpha: {from:0, to:1},
@@ -419,7 +456,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Room4],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
+    scene: [Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
     title: "Adventure Game",
 });
 
