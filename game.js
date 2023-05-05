@@ -159,12 +159,28 @@ class Room2 extends AdventureScene {
                 this.gotoScene('room4');
             }
         )
-    let painting = this.add.text(this.w * 0.3, this.w * 0.3, "🖼 Painting (Underdevlopment)")
+    let painting = this.add.text(this.w * 0.3, this.w * 0.3, "🖼 Painting")
         .setFontSize(this.s * 2.5)
         .setInteractive()
         .on('pointerover', () => {
-            this.showMessage("Look like a large painting.")
+            this.showMessage("Well this is a paint in the ass")
+            this.tweens.add({
+                targets: painting,
+                x: this.s + (this.h - 5 * this.s) * Math.random(),
+                y: this.s + (this.h - 5 * this.s) * Math.random(),
+                ease: 'Sine.inOut',
+                duration: 1
+            });
+            this.tweens.add({
+                targets: painting,
+                x: '+=' + this.s,
+                repeat: 2,
+                yoyo: true,
+                ease: 'Sine.inOut',
+                duration: 100
+            });
         })
+        
     }
 }
 
@@ -456,7 +472,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
+    scene: [Room2],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
     title: "Adventure Game",
 });
 
