@@ -20,3 +20,6 @@ Asset sources:
 Code sources:
 - `adventure.js` and `index.html` were created for this project [Adam Smith](https://github.com/rndmcnlly) and edited by me.
 - `game.js` was sketched by [Adam Smith](https://github.com/rndmcnlly) and rewritten by me.
+
+READ ME:
+For this assigment I decide to appoarch a maze game with door where the player interact with different door that lead them to differernt scene that had a sprite of text. Some of the change are made with the interaction item and implementing the adv js file to add some icon which open different website that lead them different "PAGE" and "GAME" the desgin of the assigment was to created a maze where it confusing by the door. The text of message of the sprite and letter give some hummor about creator of the game and lead to a wacky journey of exlporing many door. The interaction are made to be humor and also to engage the player to explore different ending that is logicial reasoning and funny empresion,
