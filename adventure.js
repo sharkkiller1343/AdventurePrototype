@@ -26,7 +26,7 @@ class AdventureScene extends Phaser.Scene {
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
         
         this.messageBox = this.add.text(this.w * 0.75 + this.s, this.h * 0.33)
-            .setStyle({ fontSize: `${2 * this.s}px`, color: '#eea' })
+            .setStyle({ fontSize: `${2 * this.s}px`, color: '#ffffff' })
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
 
         this.inventoryBanner = this.add.text(this.w * 0.75 + this.s, this.h * 0.66)
@@ -40,7 +40,7 @@ class AdventureScene extends Phaser.Scene {
         this.add.text(this.w-3*this.s, this.h-3*this.s, "📺")
             .setStyle({ fontSize: `${2 * this.s}px` })
             .setInteractive({useHandCursor: true})
-            .on('pointerover', () => this.showMessage('Fullscreen?'))
+            .on('pointerover', () => this.showMessage('Fullscreen? (like do you really need it)'))
             .on('pointerdown', () => {
                 if (this.scale.isFullscreen) {
                     this.scale.stopFullscreen();
@@ -50,6 +50,20 @@ class AdventureScene extends Phaser.Scene {
             });
 
         this.onEnter();
+
+        this.page = this.add.text(this.w-6*this.s, this.h-3*this.s, "📑", { fontSize: `${2 * this.s}px` })
+            .setInteractive({useHandCursor: true})
+            .on('pointerover', () => this.showMessage('Open the page?'))
+            .on('pointerup', () => {
+                window,open("https://docs.google.com/document/d/187jak5Yo7ALF5JuS6fshsY7Pi0bTfn2U--st9siJ6ac/edit?usp=sharing");
+            })
+        
+        this.pgame = this.add.text(this.w-9*this.s, this.h-3*this.s, "🎮", { fontSize: `${2 * this.s}px` })
+            .setInteractive({useHandCursor: true})
+            .on('pointerover', () => this.showMessage('Open the "GAME" I made from previous work'))
+            .on('pointerup', () => {
+                window,open("https://sharkkiller1343.github.io/Cinematic-Slide-Show/");
+            })
 
     }
 
