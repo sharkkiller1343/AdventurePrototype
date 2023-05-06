@@ -28,6 +28,7 @@ class Game extends AdventureScene {
                     this.gotoScene('room1');
                 }
             )
+        this.cameras.main.setBackgroundColor('0x152238');
 
     }
 }
@@ -111,6 +112,7 @@ class Room1 extends AdventureScene {
                     onComplete: () => rock.destroy()
                 });
             })
+        this.cameras.main.setBackgroundColor('0x8B0000');
 
     }
 }
@@ -166,8 +168,8 @@ class Room2 extends AdventureScene {
             this.showMessage("Well this is a paint in the ass")
             this.tweens.add({
                 targets: painting,
-                x: this.s + (this.h - 5 * this.s) * Math.random(),
-                y: this.s + (this.h - 5 * this.s) * Math.random(),
+                x: this.s + (this.h - 2 * this.s) * Math.random(),
+                y: this.s + (this.h - 2 * this.s) * Math.random(),
                 ease: 'Sine.inOut',
                 duration: 1
             });
@@ -180,7 +182,7 @@ class Room2 extends AdventureScene {
                 duration: 100
             });
         })
-        
+        this.cameras.main.setBackgroundColor('0x013220');
     }
 }
 
@@ -255,6 +257,7 @@ class Room3 extends AdventureScene {
                 this.gotoScene('laptop');
             }
         })
+        this.cameras.main.setBackgroundColor('0x8B8000');
     }
 }
 class Laptop extends AdventureScene {
@@ -288,6 +291,7 @@ class Laptop extends AdventureScene {
                     onComplete: () => key.destroy()
                 });
             })
+        this.cameras.main.setBackgroundColor('0xADD8E6');
     }
 }
 class Room4 extends AdventureScene {
@@ -388,6 +392,7 @@ class Room4 extends AdventureScene {
                 this.gotoScene('good');
             }
         })
+        this.cameras.main.setBackgroundColor('0x9F2B68');
     }
 }
 class Intro extends Phaser.Scene {
@@ -472,7 +477,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Room2],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
+    scene: [Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
     title: "Adventure Game",
 });
 
