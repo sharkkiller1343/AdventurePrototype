@@ -291,6 +291,17 @@ class Laptop extends AdventureScene {
                     onComplete: () => key.destroy()
                 });
             })
+        let file = this.add.text(this.w * 0.5, this.w * 0.3, "📁 FILE")
+            .setFontSize(this.s * 2.5)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("The File say, ''DO NOT OPEN'' OR ELSE.")
+            })
+            .on('pointerdown', () => {
+                window,open("https://www.youtube.com/watch?v=mx86-rTclzA");
+                this.showMessage("GOT YOUR ASS LMAO 😂📸.");
+            });
+
         this.cameras.main.setBackgroundColor('0xADD8E6');
     }
 }
@@ -477,7 +488,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
+    scene: [Laptop],//Intro, Game, Room1, Room2, Room3, Room4, Good, Bad1, Bad2, Laptop
     title: "Adventure Game",
 });
 
